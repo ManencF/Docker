@@ -3,7 +3,7 @@ MAINTAINER Robin FREDON
 
 ADD rootfs.tar.xz /
 
-RUN apt-get update && apt-get install -y apache2
+RUN apt-get update && apt-get install -y apache2 ansible
 
 ENTRYPOINT ["/usr/sbin/apache2ctl","-D","FOREGROUND"]
 
