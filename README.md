@@ -11,7 +11,7 @@ docker stop DockerTP
 
 docker restart DockerTP
 
-## docker-compose
+## Commands for docker-compose
 docker-compose up
 
 ## URL
