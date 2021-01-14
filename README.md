@@ -1,10 +1,15 @@
 # Docker TP
-## Commands to start the docker
+## Commands to install the docker
 docker build . -f DockerFile -t dockertp
 
 docker run -dp 8002:80 --name DockerTP dockertp
 
+## Commands to manage the docker
+docker start DockerTP
+
 docker stop DockerTP
+
+docker restart DockerTP
 
 ## docker-compose
 docker-compose up
