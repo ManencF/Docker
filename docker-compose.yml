@@ -23,10 +23,8 @@ services:
             - next_maria
             
     nextcloud:
-      image: nextcloud
+      image: nextcloud:fpm
       container_name: nextcloud_app
-      ports:
-          - 8080:80
       volumes:
           - nextcloud:/var/www/html
       environment:
@@ -48,14 +46,13 @@ services:
       image: "traefik:v2.4"
       container_name: "traefik"
       command:
-          #- "--log.level=DEBUG"
           - "--api.insecure=true"
           - "--providers.docker=true"
           - "--providers.docker.exposedbydefault=false"
-          - "--entrypoints.web.address=:90"
+          - "--entrypoints.web.address=:80"
       ports:
-          - "90:90"
-          - "8090:8090"
+          - "80:80"
+          - "8080:8080"
       volumes:
           - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
