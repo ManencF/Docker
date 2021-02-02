@@ -14,6 +14,12 @@ docker restart DockerTP
 ## Commands for docker-compose
 docker-compose up
 
+docker-compose down
+
 ## URL
 ### Apache
 http://localhost:8002
+
+### NextCloud
+
+http://localhost:8080
