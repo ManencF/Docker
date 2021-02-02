@@ -43,3 +43,26 @@ services:
       networks:
           - next_maria
           - next_web
+
+    traefik:
+      image: "traefik:v2.4"
+      container_name: "traefik"
+      command:
+          #- "--log.level=DEBUG"
+          - "--api.insecure=true"
+          - "--providers.docker=true"
+          - "--providers.docker.exposedbydefault=false"
+          - "--entrypoints.web.address=:90"
+      ports:
+          - "90:90"
+          - "8090:8090"
+      volumes:
+          - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+    whoami:
+      image: "traefik/whoami"
+      container_name: "simple-service"
+      labels:
+         - "traefik.enable=true"
+         - "traefik.http.routers.whoami.rule=Host(`localhost`)"
+         - "traefik.http.routers.whoami.entrypoints=web"
