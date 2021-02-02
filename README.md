@@ -23,3 +23,7 @@ http://localhost:8002
 ### NextCloud
 
 http://localhost:8080
+
+### Traefik
+
+http://localhost:8080
