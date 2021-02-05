@@ -9,12 +9,12 @@ services:
     volumes:
       - db:/var/lib/mysql
     environment:
-            - MYSQL_ROOT_PASSWORD=987654
-            - MYSQL_PASSWORD=100298
-            - MYSQL_DATABASE=nextcloud
-            - MYSQL_USER=nextcloud
+      - MYSQL_ROOT_PASSWORD=987654
+      - MYSQL_PASSWORD=100298
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
 
-  app:
+  nextcloud:
     image: nextcloud:fpm-alpine
     restart: always
     container_name: nextcloud
@@ -28,7 +28,7 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_PASSWORD=100298
-    depends_on:
+    links:
       - db
 
   traefik:
@@ -51,8 +51,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextapp.rule=Host(`nextcloud.localhost`)"
-    depends_on:
-      - app
+    links:
+      - nextcloud
 
 volumes:
   db:
