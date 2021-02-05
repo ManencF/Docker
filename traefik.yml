@@ -1,0 +1,5 @@
+providers:
+  docker:
+    exposedByDefault: false
+api:
+  insecure: true

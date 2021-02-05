@@ -12,14 +12,17 @@ docker stop DockerTP
 docker restart DockerTP
 
 ## Commands for docker-compose
+docker-compose build --pull
+
 docker-compose up
 
 docker-compose down
 
+docker-compose down --volumes
+
 ## URL
-### Apache
-http://localhost:8002
+### Traefik
+http://localhost:8080
 
 ### NextCloud
-
-http://localhost:8080
+http://nextcloud.localhost/
