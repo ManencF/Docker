@@ -1,19 +1,10 @@
 version: '3'
 
-
 services:
-  traef:
-    image: traefik:2.4
-    restart: always
-    ports:
-      - "80:80"
-      - "8080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.yml:/etc/traefik/traefik.yml:ro
   db:
     image: mariadb
     command : --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    container_name: mariaDB
     restart: always
     volumes:
       - db:/var/lib/mysql
@@ -22,9 +13,11 @@ services:
             - MYSQL_PASSWORD=100298
             - MYSQL_DATABASE=nextcloud
             - MYSQL_USER=nextcloud
+
   app:
     image: nextcloud:fpm-alpine
     restart: always
+    container_name: nextcloud
     volumes:
       - nextcloud:/var/www/html
     environment:
@@ -38,9 +31,21 @@ services:
     depends_on:
       - db
 
+  traefik:
+    image: traefik:2.4
+    container_name: traefik
+    restart: always
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml:ro
+
   web:
     build: ./web
     restart: always
+    container_name: web_server
     volumes:
       - nextcloud:/var/www/html:ro
     labels:

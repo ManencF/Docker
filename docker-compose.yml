@@ -39,8 +39,8 @@ services:
       labels:
          - "traefik.backend=nextcloud"
          - "traefik.enable=true"
-         - "traefik.http.routers.nextcloud.rule=Host(`localhost`)"
-         - "traefik.http.routers.nextcloud.entrypoints=nextcloud"
+         - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.localhost`)"
+         #- "traefik.http.routers.nextcloud.entrypoints=nextcloud"
       depends_on:
           - db
           - traefik
