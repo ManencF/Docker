@@ -48,6 +48,7 @@ services:
     container_name: web_server
     volumes:
       - nextcloud:/var/www/html:ro
+      - /data/certs:/etc/nginx/certs
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextapp.rule=Host(`nextcloud.localhost`)"
